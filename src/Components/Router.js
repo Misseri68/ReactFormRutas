@@ -4,6 +4,7 @@ import Cine from "./Cine";
 import Musica from "./Musica";
 import Home from "./Home";
 import Collatz from "./Collatz";
+import TablaMultiplicar from "./TablaMultiplicar";
 
 export default class Router extends Component{
 
@@ -15,6 +16,7 @@ export default class Router extends Component{
                     <Route path="/cine" element={<Cine/>}/>
                     <Route path="/musica" element={<Musica/>}/>
                     <Route path="/juego" element={<Collatz/>}/>
+                    <Route path="/tabla" element={<TablaMultiplicar/>}/>
                 </Routes>
             </BrowserRouter>
         )

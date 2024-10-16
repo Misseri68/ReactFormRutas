@@ -17,6 +17,9 @@ export default class MenuRutas extends Component {
             <li>
                 <a href="/juego">Juego</a>
             </li>
+            <li>
+                <a href="/tabla">Tabla Multiplicar</a>
+            </li>
         </ul>
       </div>
     )
