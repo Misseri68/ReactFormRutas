@@ -5,7 +5,6 @@ export default class Collatz extends Component {
     cajaNumero = React.createRef();
 
     state = {
-        numero: null,
         secuencia: []
     }
 
@@ -20,35 +19,17 @@ export default class Collatz extends Component {
         }
     }
 
-    secuenciaCollatz(){
-        if(this.state.numero>1){
-            console.log("Secuencia después del setState " + this.state.secuencia)
-            while(this.state.secuencia[this.state.secuencia.length -1 ]>1){
-                let numDevuelto = this.numCollatz(this.state.secuencia[this.state.secuencia.length -1 ]);
-                console.log("Num devuelto y a añadir: " + numDevuelto)
-                this.state.secuencia.push(numDevuelto);
-                this.setState({secuencia: this.state.secuencia})
-                console.log("Dentro del while: " + this.state.secuencia)
-
-            }
-        }
-        console.log(this.state.secuencia)
-
-    }
-
+   
 
     peticionNumero = (e) => {
         e.preventDefault();
         let numero = parseInt(this.cajaNumero.current.value);
-        console.log(numero + " El numero del input")
-        this.setState({
-            numero: numero,
-            secuencia: [numero]
-        });
-        console.log("El primer cambio de state de numero: " + this.state.numero)
-        console.log("Y el primer cambio de state de secuencia: " + this.state.secuencia)
-        this.secuenciaCollatz();
-        console.log("Hola!")
+        let arrayAux = [numero]
+        while(numero>1){
+            numero = this.numCollatz(numero);
+            arrayAux.push(numero);
+        }
+        this.setState({secuencia: arrayAux});
     }
 
   render() {
@@ -60,14 +41,14 @@ export default class Collatz extends Component {
             <br/><br/>
             <button>Procesar!</button>
         </form>
-        {this.state.numero && (
+        {this.state.secuencia.length>0 && (
                 <div>
                     <br/>
                     <h3>Secuencia:</h3>
                      <br/>
                     <ul>
                         {this.state.secuencia.map((num, index) => {
-                            return(<li key={index}>hola {num}</li>)
+                            return(<li key={index}>{num}</li>)
                         })}
                     </ul>
                 </div>
